@@ -1,35 +1,34 @@
-import "./channelspanel.scss"
-import ChannelListing from "../channellisting/channellisting"
-import { ChannelsContext } from "../../contexts/channelscontext"
-import {useContext} from "vue";
+<template>
+  <div class="channelsPanelContainer">
+    <div class="spacer"></div>
+    <div v-for="(channel, key) in channels" :key="key">
+      <ChannelListing :channel="{ name: channel.name, groupID: channel.groupID }" />
+    </div>
+  </div>
+</template>
 
-// export component
+<script>
+import ChannelListing from '../channellisting/channellisting.vue';
+import { useChannelsContext } from '../../contexts/channelscontext';
+
 export default {
-  name: "channels-panel",
-  functional: true,
-  components: { ChannelListing },
-  render(h, c) {
-    const { state } = useContext(ChannelsContext)
+  name: 'ChannelsPanel',
+  components: {
+    ChannelListing,
+  },
+  setup() {
+    const { state } = useChannelsContext();
+    return {
+      channels: state.channels,
+    };
+  },
+};
+</script>
 
-    const renderChannelsListings = () => {
-      return state.channels.map((channel, key) => {
-        const { name, groupID } = channel
-        return (
-          <channel-listing
-            key={key}
-            channel={{
-              name: name,
-              groupID: groupID
-            }}
-          />
-        )
-      })
-    }
-
-    return (
-      <div class="channelsPanelContainer">
-        <div class="spacer"></div>
-
-        {renderChannelsListings()}
-      </div>
-    )
+<style lang="scss" scoped>
+.channelsPanelContainer {
+  .spacer {
+    // Add your styles here
+  }
+}
+</style>

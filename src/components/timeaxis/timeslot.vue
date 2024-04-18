@@ -1,5 +1,5 @@
 <template>
-  <div class="timeSlotContainer" :style="{ width: TIMESLOTWIDTH + 'px' }">
+  <div class="timeSlotContainer" :style="{ width: TIMESLOTWIDTH }">
     <div class="timeSlot">
       <span class="label">{{ label }}</span>
     </div>
@@ -14,27 +14,13 @@ export default {
   props: {
     label: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
-      TIMESLOTWIDTH,
+      TIMESLOTWIDTH
     };
-  },
+  }
 };
 </script>
-
-<style scoped>
-.timeSlotContainer {
-  /* Add any necessary styles */
-}
-
-.timeSlot {
-  /* Add any necessary styles */
-}
-
-.label {
-  /* Add any necessary styles */
-}
-</style>

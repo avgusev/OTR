@@ -1,11 +1,17 @@
-import "./channelrow.scss"
+<template>
+  <div class="channelRow">
+    <slot></slot>
+  </div>
+</template>
 
-// export component
+<script>
 export default {
-  name: "channel-row",
-  functional: true,
-  render(h, c) {
-    const props = c.props
-    return <div class="channelRow">{c.children}</div>
-  }
+  name: 'ChannelRow',
+};
+</script>
+
+<style scoped>
+.channelRow {
+  /* Add your styles here */
 }
+</style>

@@ -1,26 +1,35 @@
-import "./channellisting.scss"
-import { Tooltip } from "@material-ui/core"
+<template>
+  <div class="channelListing" :data-id="channel.groupID">
+    <Tooltip :title="channel.name" placement="right">
+      <img :style="{ width: '100%' }" :alt="channel.name" :src="logo" />
+    </Tooltip>
+  </div>
+</template>
 
-// export component
+<script>
+import { Tooltip } from '@material-ui/core';
+
 export default {
-  name: "channel-listing",
-  functional: true,
-  components: { Tooltip },
-  render(h, c) {
-    let { channel } = c.props
-    const logo = `https://cdn.hd-plus.de/senderlogos/bright-cropped/${channel.groupID}.png`
-    return (
-      <tooltip title={channel.name} placement="right">
-        <div class="channelListing" data-id={channel.groupID}>
-          <img
-            style={{
-              width: "100%"
-            }}
-            alt={channel.name}
-            src={logo}
-          />
-        </div>
-      </tooltip>
-    )
+  name: 'ChannelListing',
+  props: {
+    channel: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    logo() {
+      return `https://cdn.hd-plus.de/senderlogos/bright-cropped/${this.channel.groupID}.png`;
+    }
+  },
+  components: {
+    Tooltip
   }
+};
+</script>
+
+<style scoped>
+.channelListing {
+  /* Add styles from channellisting.scss here */
 }
+</style>
